@@ -17,7 +17,7 @@ COPY . .
 # Create uploads directory
 RUN mkdir -p uploads && chmod 777 uploads
 
-# Make the entrypoint script executable
+# Copy entrypoint script and set permissions
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
