@@ -1,0 +1,90 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.classs
+*.so
+.Python
+env/out/
+venv/
+ENV//
+env.bak//
+venv.bak/
+.env*/ronment variables
+pythonenv*
+.venvcal
+.pytest_cache/.env.development.local
+.coverage
+htmlcov/.production.local
+.tox/
+.nox/nd files
+.hypothesis/
+.egg-info/
+.installed.cfg*.suo
+*.egg
+.eggs/roj
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+rated files
+# Jupyter Notebooktore
+.ipynb_checkpointstore?
+._*
+# Distribution / packaging
+dist/
+build/b
+downloads/mbs.db
+eggs/
+lib/g
+lib64/
+parts/
+sdist/# Logs
+var/
+wheels/
+*.manifest
+*.spec
+MANIFEST
+/
+# Dependenciesnode_modules/npm-debug.logyarn-debug.logyarn-error.log
+.pnpm-debug.log
+
+# Build outputs
+out/
+.next/
+.nuxt/
+.cache/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing
+coverage/
+
+# Logs
+logs/
+*.log
+
+# Misc
+.tmp/
+.temp/
