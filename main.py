@@ -312,3 +312,13 @@ if __name__ == "__main__":
         log_config=log_config,
         workers=1
     )
+
+    # Replace the current migration command with:
+    import subprocess
+    from scripts.run_migrations import run_migrations
+
+    print("Running database migrations...")
+    if run_migrations():
+        print("Migrations completed successfully")
+    else:
+        print("Migration failed but continuing startup")
