@@ -38,9 +38,9 @@ data/
 .docker-cache/
 
 # Database
-*.db
-*.sqlite
-*.sqlite3
+database/
+.env
+
 
 # IDE
 .idea/
