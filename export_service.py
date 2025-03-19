@@ -1,8 +1,9 @@
-import pandas as pd
 from io import BytesIO
 from sqlalchemy.orm import Session
 from models import FormSubmission
 from datetime import datetime
+import openpyxl
+from openpyxl.utils import get_column_letter
 
 class ExportService:
     @staticmethod
@@ -19,40 +20,57 @@ class ExportService:
         # Get all submissions from database
         submissions = db.query(FormSubmission).all()
         
-        # Convert to list of dictionaries for pandas
-        data = []
-        for submission in submissions:
-            data.append({
-                "Jina Kamili": submission.jina_kamili,
-                "Jinsi": submission.jinsi,
-                "Umri": submission.umri,
-                "Barua Pepe": submission.barua_pepe,
-                "Nambari Simu": submission.nambari_simu,
-                "Ngazi ya Elimu": submission.ngazi_elimi,
-                "Jina la Kozi": submission.jina_kozi,
-                "Mwaka wa Kuhitimu": submission.mwaka_kuhitimu,
-                "Taasisi ya Mwisho": submission.taasisi_mwisho or "",
-                "Ujuzi wa Kompyuta": submission.ujuzi_kompyuta,
-                "Lugha": submission.lugha,
-                "Msaada": submission.msaada,
-                "Tarehe ya Usajili": submission.created_at,
-            })
+        # Create new workbook and select active worksheet
+        workbook = openpyxl.Workbook()
+        worksheet = workbook.active
+        worksheet.title = 'Form Submissions'
         
-        # Create pandas DataFrame and export to Excel
-        df = pd.DataFrame(data)
+        # Define headers
+        headers = [
+            "Jina Kamili", "Jinsi", "Umri", "Barua Pepe", "Nambari Simu",
+            "Ngazi ya Elimu", "Jina la Kozi", "Mwaka wa Kuhitimu",
+            "Taasisi ya Mwisho", "Ujuzi wa Kompyuta", "Lugha", "Msaada",
+            "Tarehe ya Usajili"
+        ]
+        
+        # Write headers to the first row
+        for col_num, header in enumerate(headers, 1):
+            worksheet.cell(row=1, column=col_num, value=header)
+        
+        # Write data
+        for row_num, submission in enumerate(submissions, 2):  # Start from row 2
+            worksheet.cell(row=row_num, column=1, value=submission.jina_kamili)
+            worksheet.cell(row=row_num, column=2, value=submission.jinsi)
+            worksheet.cell(row=row_num, column=3, value=submission.umri)
+            worksheet.cell(row=row_num, column=4, value=submission.barua_pepe)
+            worksheet.cell(row=row_num, column=5, value=submission.nambari_simu)
+            worksheet.cell(row=row_num, column=6, value=submission.ngazi_elimi)
+            worksheet.cell(row=row_num, column=7, value=submission.jina_kozi)
+            worksheet.cell(row=row_num, column=8, value=submission.mwaka_kuhitimu)
+            worksheet.cell(row=row_num, column=9, value=submission.taasisi_mwisho or "")
+            worksheet.cell(row=row_num, column=10, value=submission.ujuzi_kompyuta)
+            worksheet.cell(row=row_num, column=11, value=submission.lugha)
+            worksheet.cell(row=row_num, column=12, value=submission.msaada)
+            worksheet.cell(row=row_num, column=13, value=submission.created_at)
+        
+        # Adjust column widths
+        for col_num, _ in enumerate(headers, 1):
+            # Get maximum length of data in each column
+            max_length = 0
+            for row_num in range(1, worksheet.max_row + 1):
+                cell_value = worksheet.cell(row=row_num, column=col_num).value
+                if cell_value:
+                    max_length = max(max_length, len(str(cell_value)))
+            
+            # Set column width based on max length (with some padding)
+            adjusted_width = min(max_length + 2, 50)
+            worksheet.column_dimensions[get_column_letter(col_num)].width = adjusted_width
         
         # Create BytesIO buffer to hold Excel file
         output = BytesIO()
         
-        # Use ExcelWriter for more control
-        with pd.ExcelWriter(output, engine='openpyxl') as writer:
-            df.to_excel(writer, sheet_name='Form Submissions', index=False)
-            
-            # Adjust column widths
-            worksheet = writer.sheets['Form Submissions']
-            for i, col in enumerate(df.columns):
-                max_length = max(df[col].astype(str).apply(len).max(), len(col)) + 2
-                worksheet.column_dimensions[chr(65 + i)].width = min(max_length, 50)  # A, B, C, etc.
+        # Save workbook to the buffer
+        workbook.save(output)
         
         # Reset buffer position to beginning
         output.seek(0)
