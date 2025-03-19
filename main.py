@@ -3,9 +3,8 @@ from fastapi import FastAPI, HTTPException, Depends, Body, File, UploadFile, Res
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from typing import List, Optional, Dict, Any
+from typing import List, Optional
 import os
-import shutil
 from sqlalchemy.orm import Session
 from datetime import datetime
 
