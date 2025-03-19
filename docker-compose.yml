@@ -1,3 +1,4 @@
+
 services:
   traefik:
     image: traefik:2.8
@@ -19,8 +20,28 @@ services:
       - 'traefik.http.routers.traefik.service=traefik'
       - 'traefik.http.routers.traefik.service=api@internal'
 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - APP_SECRET_KEY=${APP_SECRET_KEY}
+      - DOMAIN=${DOMAIN}
+    depends_on:
+      - database
+    volumes:
+      - ./uploads:/app/uploads
+    restart: unless-stopped
+
   database:
-    image: mysql:8.3.0
+    image: mysql:8.0
     container_name: database
     restart: unless-stopped
     networks:
@@ -31,6 +52,8 @@ services:
       - '3306:3306'
     volumes:
       - ./database:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: --default-authentication-plugin=mysql_native_password
 
   questionnaire:
     build:
@@ -87,4 +110,5 @@ networks:
     external: true
 
 volumes:
+  mysql_data:
   questionnaireservicepg:
