@@ -8,7 +8,7 @@ env/out/
 env/
 ENV//
 env.bak//
-venv.bak/
+env.bak/
 .env*/ronment variables
 pythonenv*
 .venvcal
