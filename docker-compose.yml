@@ -29,7 +29,7 @@ services:
     networks:
       - proxy
     ports:
-      - "${PORT}:${PORT}"
+      - 8000:8000
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
@@ -39,7 +39,7 @@ services:
       - "traefik.http.routers.questionnaire.entrypoints=websecure"
       - "traefik.http.routers.questionnaire.tls.certresolver=letsencrypt"
       - "traefik.http.routers.questionnaire.service=questionnaire"
-      - "traefik.http.services.questionnaire.loadbalancer.server.port=${PORT}"
+      - "traefik.http.services.questionnaire.loadbalancer.server.port=8000"
 
 networks:
   proxy:
