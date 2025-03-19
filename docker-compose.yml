@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   database:
     image: alpine:latest
@@ -16,9 +18,9 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - '/var/run/docker.sock:/var/run/docker.sock:ro'
-      - './traefik/traefik.yml:/traefik.yml:ro' 
-      - './acme.json:/acme.json'
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.yml:/traefik.yml:ro
+      - ./acme.json:/acme.json
     labels:
       - 'traefik.enable=true'
       - 'traefik.port=80'
@@ -45,14 +47,14 @@ services:
       - 'traefik.docker.network=proxy'
       - 'traefik.port=80'
       - 'traefik.http.routers.questionnaire.tls=true'
-      - 'traefik.http.routers.questionnaire.rule=Host(`trainings.admin.asuta.or.tz `)'
+      - 'traefik.http.routers.questionnaire.rule=Host(`trainings.admin.asuta.or.tz`)'
       - 'traefik.http.routers.questionnaire.tls.certresolver=letsencrypt'
       - 'traefik.http.routers.questionnaire.service=questionnaire'
       - 'traefik.http.services.questionnaire.loadbalancer.server.port=8000'
 
 volumes:
   sqlite_data:
-  
+
 networks:
   proxy:
     external: true  # Use existing network instead of creating a new one
