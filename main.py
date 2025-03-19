@@ -14,7 +14,7 @@ from export_service import ExportService
 
 # Application version and configuration
 VERSION = "2.0.0"
-BASE_URL = os.getenv("BASE_URL", "http://localhost:8000")
+BASE_URL = os.getenv("BASE_URL", "http://13.61.150.92:8000")
 API_TITLE = "Form Submission API"
 API_DESCRIPTION = "API for processing and managing form submissions"
 
