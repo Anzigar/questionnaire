@@ -120,11 +120,11 @@ async def get_submissions(
     # Count total records for pagination info
     total_records = query.count()
     
-    # Apply pagination
+    # Order by created_at descending first, then apply pagination
+    query = query.order_by(FormSubmission.created_at.desc())
     query = query.offset((page - 1) * page_size).limit(page_size)
     
-    # Order by created_at descending
-    submissions = query.order_by(FormSubmission.created_at.desc()).all()
+    submissions = query.all()
     
     # Return paginated results with pagination metadata
     return {

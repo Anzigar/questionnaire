@@ -14,4 +14,4 @@ python -m alembic upgrade head || echo "Migration failed but continuing startup"
 
 # Start the application
 echo "Starting the application..."
-exec uvicorn main:app --host 0.0.0.0 --port $PORT
+uvicorn main:app --host ${HOST:-0.0.0.0} --port ${PORT:-8000}

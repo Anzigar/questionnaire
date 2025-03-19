@@ -9,9 +9,7 @@ COPY . .
 RUN mkdir -p db
 RUN chmod +x entrypoint.sh
 
-# Use ARG to properly pass PORT during build if needed
-ARG PORT=8000
-ENV PORT=${PORT}
+
 EXPOSE ${PORT}
 
 ENTRYPOINT ["./entrypoint.sh"]
