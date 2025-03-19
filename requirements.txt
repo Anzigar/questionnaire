@@ -1,8 +1,8 @@
-fastapi==0.104.1
-uvicorn==0.23.2
-pydantic==2.4.2
-python-multipart==0.0.6
-sqlalchemy==2.0.23
-openpyxl==3.1.2
-python-dotenv==1.0.0
-# pandas has been removed
+fastapi
+uvicorn
+pydantic
+python-multipart
+sqlalchemy
+openpyxl
+python-dotenv
+pandas
