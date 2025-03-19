@@ -5,7 +5,10 @@ import os
 
 os.makedirs("db", exist_ok=True)
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///db/questionnaire.db"
+# Make sure to have this defined
+SQLALCHEMY_DATABASE_URL = "sqlite:///./questionnaire.db"
+# Or appropriate URL for your database
+
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )

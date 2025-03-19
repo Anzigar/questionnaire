@@ -1,6 +1,6 @@
 from io import BytesIO
 from sqlalchemy.orm import Session
-from models import FormSubmission
+from questionnaire_service.models import FormSubmission
 from datetime import datetime
 import openpyxl
 from openpyxl.utils import get_column_letter
