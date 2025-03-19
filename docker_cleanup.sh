@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Stopping current containers..."
-docker-compose down
+docker compose down
 
 echo "Removing all stopped containers, unused networks, dangling images, and build cache..."
 docker system prune -f
@@ -16,6 +16,6 @@ docker builder prune -f
 docker network create proxy || echo "Network 'proxy' already exists."
 
 echo "Cache cleared. Rebuild and restart your containers with:"
-echo "docker-compose up --build -d"
+echo "docker compose up --build -d"
 
-docker-compose up  -d
+docker compose up  -d
