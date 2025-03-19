@@ -1,75 +1,70 @@
 # Python
 __pycache__/
 *.py[cod]
-*$py.classs
+*$py.class
 *.so
 .Python
-env/out/
 env/
-ENV//
-env.bak//
-env.bak/
-.env*/ronment variables
-pythonenv*
-.venvcal
-.pytest_cache/.env.development.local
-.coverage
-htmlcov/.production.local
-.tox/
-.nox/nd files
-.hypothesis/
-.egg-info/
-.installed.cfg*.suo
-*.egg
-.eggs/roj
-*.spec
-pip-log.txt
-pip-delete-this-directory.txt
-rated files
-# Jupyter Notebooktore
-.ipynb_checkpointstore?
-._*
-# Distribution / packaging
+build/
+develop-eggs/
 dist/
-build/b
-downloads/mbs.db
+downloads/
 eggs/
-lib/g
+.eggs/
+lib/
 lib64/
 parts/
-sdist/# Logs
+sdist/
 var/
-wheels/
-*.manifest
-*.spec
-MANIFEST
-/
-# Dependenciesnode_modules/npm-debug.logyarn-debug.logyarn-error.log
-.pnpm-debug.log
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Build outputs
-out/
-.next/
-.nuxt/
-.cache/
-
-# Environment variables
+# Environments
+# Virtual Environment
+venv/
+env/
+ENV/
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
-# Editor directories and files
+
+# Docker
+.docker/
+docker-compose.override.yml
+sqlite_data/
+data/
+
+# Docker caches
+.docker-cache/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE
 .idea/
 .vscode/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+*.swp
+*.swo
 
-# OS generated files
+# Logs
+logs/
+*.log
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Exports
+uploads/
+downloads/
+exports/
+*.xlsx
+*.csv
+
+# System files
 .DS_Store
 .DS_Store?
 ._*
@@ -78,13 +73,5 @@ out/
 ehthumbs.db
 Thumbs.db
 
-# Testing
-coverage/
-
-# Logs
-logs/
-*.log
-
-# Misc
-.tmp/
-.temp/
+# Traefik
+acme.json
