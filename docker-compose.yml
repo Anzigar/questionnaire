@@ -1,11 +1,9 @@
-version: "3.8"
-
 services:
   database:
     image: alpine:latest
     container_name: questionnaire_sqlite_db
     volumes:
-      - ./sqlite_data:/data
+      - ./sqlite_data:/app/db
     restart: unless-stopped
   
   traefik:

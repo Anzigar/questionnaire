@@ -3,7 +3,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 
-# Database URL - you can use PostgreSQL, MySQL, etc. in production
 # Using SQLite for simplicity
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./recording.db")
 
