@@ -27,3 +27,13 @@ class FormSubmission(Base):
     
     # File reference - this would store path to uploaded file
     pasipoti_path = Column(String(255), nullable=True)
+
+def create_tables():
+    """Create database tables if they don't exist"""
+    from database import engine, Base
+    Base.metadata.create_all(bind=engine)
+
+# Add to the bottom of the file to auto-create tables when the app starts
+if __name__ == "__main__":
+    create_tables()
+    print("Database tables created successfully!")
