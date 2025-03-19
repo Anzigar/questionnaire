@@ -35,7 +35,7 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.port=80"
       - "traefik.http.routers.questionnaire.tls=true"
-      - "traefik.http.routers.questionnaire.rule=Host(`trainings.admin.asuta.or.tz`)"
+      - "traefik.http.routers.questionnaire.rule=Host(`trainings.admin101.asuta.or.tz`)"
       - "traefik.http.routers.questionnaire.entrypoints=websecure"
       - "traefik.http.routers.questionnaire.tls.certresolver=letsencrypt"
       - "traefik.http.routers.questionnaire.service=questionnaire"
