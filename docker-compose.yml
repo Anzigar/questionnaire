@@ -55,4 +55,4 @@ volumes:
   
 networks:
   proxy:
-    name: proxy
+    external: true  # Use existing network instead of creating a new one
