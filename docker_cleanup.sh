@@ -12,6 +12,9 @@ docker system prune -a -f
 echo "Clearing build cache..."
 docker builder prune -f
 
+
+docker network create proxy || echo "Network 'proxy' already exists."
+
 echo "Cache cleared. Rebuild and restart your containers with:"
 echo "docker-compose up --build -d"
 

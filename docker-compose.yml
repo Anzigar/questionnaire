@@ -32,7 +32,7 @@ services:
     volumes:
       - ./database:/var/lib/mysql
 
-  payment:
+  questionnaire:
     build:
       context: .
       dockerfile: Dockerfile
@@ -52,10 +52,10 @@ services:
       - 'traefik.port=80'
       - 'traefik.http.routers.questionnaire.tls=true'
       - 'traefik.http.routers.questionnaire.rule=Host(`trainings.admin.asuta.or.tz`)'
-      - 'traefik.http.routers.payment.entrypoints=websecure'
-      - 'traefik.http.routers.payment.tls.certresolver=letsencrypt'
-      - 'traefik.http.routers.payment.service=payment'
-      - 'traefik.http.services.payment.loadbalancer.server.port=3334'
+      - 'traefik.http.routers.questionnaire.entrypoints=websecure'
+      - 'traefik.http.routers.questionnaire.tls.certresolver=letsencrypt'
+      - 'traefik.http.routers.questionnaire.service=questionnaire'
+      - 'traefik.http.services.questionnaire.loadbalancer.server.port=3334'
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -87,4 +87,4 @@ networks:
     external: true
 
 volumes:
-  paymentservicepg:
+  questionnaireservicepg:
