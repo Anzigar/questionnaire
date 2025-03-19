@@ -14,3 +14,5 @@ docker builder prune -f
 
 echo "Cache cleared. Rebuild and restart your containers with:"
 echo "docker-compose up --build -d"
+
+docker-compose up  -d
