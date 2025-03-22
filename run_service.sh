@@ -25,7 +25,4 @@ fi
 # Start the application
 log "Starting the application..."
 
-docker compose build --no-cache
-docker compose up -d
-
-docker compose ps
+docker compose up --build -d
