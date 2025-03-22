@@ -1,5 +1,5 @@
 import os
-from configs import settings
+from configs import env_config
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from questionnaire_service import models
@@ -38,4 +38,4 @@ if __name__ == "__main__":
     
    
     
-    uvicorn.run(app="main:app", host="0.0.0.0", port= settings.PORT)
+    uvicorn.run(app="main:app", host="0.0.0.0", port= env_config.PORT)
